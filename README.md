@@ -32,3 +32,5 @@ styles can be used instead of styleUrls for inline styling
 selector by default is element it can be used as attribute and class selector
 
 string interpolation doesn't support multi-line, block expression(if for else), ternary operators can be used, resolve everything to string in the end
+
+dont add curly brackets for property binding
