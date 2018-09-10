@@ -25,3 +25,6 @@ Angular changes DOM in runtime
 
 ng generate component servers
 ng g c servers
+
+for template we can use back tick ` we can make it multi line string
+styles can be used instead of styleUrls for inline styling
