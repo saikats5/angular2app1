@@ -28,3 +28,5 @@ ng g c servers
 
 for template we can use back tick ` we can make it multi line string
 styles can be used instead of styleUrls for inline styling
+
+selector by default is element it can be used as attribute and class selector
