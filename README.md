@@ -21,7 +21,7 @@ Angular changes DOM in runtime
 @element //decorator
 
 @angular/core provides basic angular features
-@NgModule declarations to add all component so that it can be bundled properly using webpack and transpiled by typescripr else it will unable to transpile it from typescript and ceate a module of all components
+@NgModule declarations to add all component so that it can be bundled properly using webpack and transpiled by typescript else it will unable to transpile it from typescript and ceate a module of all components
 
 ng generate component servers
 ng g c servers
@@ -34,3 +34,5 @@ selector by default is element it can be used as attribute and class selector
 string interpolation doesn't support multi-line, block expression(if for else), ternary operators can be used, resolve everything to string in the end
 
 dont add curly brackets for property binding
+
+npm install @angular/forms
