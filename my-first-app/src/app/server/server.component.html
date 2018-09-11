@@ -1,1 +1,1 @@
-<p>{{'String Interpolation'}} The Server Component --> {{serverId}} -- {{serverStatus}} -- {{getServerStatus()}}<p>
+<p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{online: serverStatus === 'online'}">{{'String Interpolation'}} The Server Component --> {{serverId}} -- {{serverStatus}} -- {{getServerStatus()}}<p>

@@ -36,3 +36,4 @@ string interpolation doesn't support multi-line, block expression(if for else), 
 dont add curly brackets for property binding
 
 npm install @angular/forms
+unlike structural directive, attribute directives don't add or remove elements. They only change the element they are placed on.
