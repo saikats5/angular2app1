@@ -37,3 +37,5 @@ dont add curly brackets for property binding
 
 npm install @angular/forms
 unlike structural directive, attribute directives don't add or remove elements. They only change the element they are placed on.
+
+ng g c recipes --spec false
