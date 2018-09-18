@@ -40,3 +40,7 @@ unlike structural directive, attribute directives don't add or remove elements. 
 
 ng g c recipes --spec false
 ng g c recipes/recipe-list --spec false
+
+Angular Augury for analyzing angular app
+
+@Input() creates custom events from angular/core
