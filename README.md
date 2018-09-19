@@ -47,3 +47,15 @@ Angular Augury for analyzing angular app
 when iterating element in child component using ngFor it will not work in child as we can't bind local property directly with parent component, it can be done using @Input()
 
 alias of property can be used outside by @Input("aliasName") element: {};
+
+custom event
+(customevent) = "onCustomEvent($event)"
+
+serverCreated = new EventEmitter<>({serverName: string, serverContent: string});
+EventEmitter imported from angular/core
+onAddServer(){
+    this.serverCreated.emit({
+        serverName: this.newServerName,
+        serverContent: this.newServerContent
+    });
+}
