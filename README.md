@@ -59,3 +59,5 @@ onAddServer(){
         serverContent: this.newServerContent
     });
 }
+
+@Output is similiar to @Input
