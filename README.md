@@ -63,3 +63,5 @@ onAddServer(){
 @Output is similiar to @Input
 
 Lifecycle contains ngOnChanges, ngOnInit, ngOnDoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy
+
+
