@@ -91,3 +91,7 @@ import {FormsModule}   from '@angular/forms';
 
  *ngFor="let server of servers; let i = index"
 
+Adding bootstrap in angular.json to access it globally
+
+ng g c recipes/recipe-list/recipe-item --spec false
+
