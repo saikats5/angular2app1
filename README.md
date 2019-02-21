@@ -64,4 +64,30 @@ onAddServer(){
 
 Lifecycle contains ngOnChanges, ngOnInit, ngOnDoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy
 
+(input) = "onDataChange($event)";
+onDataChange(event: any){
+    this.name = (<HTMLInputElement>event.target).name;
+}
+{{name}}
+
+[(ngModel)]="name" //require to import FormsModule
+import {FormsModule}   from '@angular/forms';
+
+ Directives are instructions in the DOM
+ Components are also directive
+
+ *ngIf="nameChanged" -- structural directive - * for structural directive - changes the structure of DOM
+
+ # -- local reference
+ <ng-template></ng-template>
+
+ structural directives add/remove elements
+ attribute directive change the element they are placed in
+ ngStyle
+ [ngStyle] for binding -- [ngStyle]="{background: getColor()}"
+
+ ngClass
+ [ngClass]="{online: serverStatus === 'online'}"
+
+ *ngFor="let server of servers; let i = index"
 
