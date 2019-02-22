@@ -140,3 +140,39 @@ Angular provide view encapsulation that means css for parents will not work on c
 @Component({
     encapsulation: ViewEncapsulation.Emulated //default //None //to make the style global //Native //gives same result as Emulated but it works on browsers that supports shadow DOM technology
 })
+
+local reference in template
+<input type="text" #serverNameInput>
+<button (click)="onchangeClick(serverNameInput)">BUTTON</button>
+onChangeClick(nameInput: HTMLInputElement){}
+but only in template not in typescript, get the input element itself
+
+it can be passed directly to ts by @ViewChild('serverNameInput') serverContentInput: ElementRef; //even component can be passed, type-->ElementRef
+//both ViewChild and ElementRef needs to be imported from @angular/core
+this.serverContentInput.nativeElement.value
+//this.serverContentInput.nativeElement.value = "something"; //not to do at this way
+
+angular will remove the mid part i.e., @@@ <ab>@@@</ab> from DOM by default
+<ng-content></ng-content>
+
+ngOnChanges - called after a bound input property changes i.e., @Input
+ngOnInt - called once the component is initialized
+ngDoCheck - called during every change detection run, on every check angular makes, even on click,timer
+ngAfterContentInit - called after content(ng-content) has been projected in to view
+ngAfterContentChecked - called every time the projected content has been checked 
+ngAfterViewInit - called after the component's view (and the child views) has been initialized  
+ngAfterViewChecked - called every time the view (and the child views) has been checked
+ngOnDestroy - called once the component is about to be destroyed
+
+//even though without it it works //implements OnInit, OnChanges
+
+ngOnChanges(cahnges: SimpleChanges){} //import {SimpleChanges} from '@angular/core';
+here it will show 'element' property from code to console with currentValue, firstChange,previousValue
+
+in dev mode ngDoCheck() will execute twice in prod once after init
+
+ngDoCheck, ngAfterContentChecked, ngAfterViewChecked called after page render also
+
+local element value can be acces after viewinit hook not before that
+
+@ContentChild similiar to @ViewChild but here the local reference will be from ng-content
