@@ -95,3 +95,41 @@ Adding bootstrap in angular.json to access it globally
 
 ng g c recipes/recipe-list/recipe-item --spec false
 
+<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElements"></app-server-element>
+@Input('srvElement') element: {type: string};
+import {Component, OnInit, Input } from '@angular/core';
+
+custom events
+<app-cockpit (serverCreated)="onServerAdded($event)" (bluePrintCreated)="onBlueprintAdded($event)"></app-cockpit>
+on parent component
+onServerAdded(serverData: {serverName: string, serverContent: string}){
+    this.serverElements.push({
+        type: 'server',
+        name: serverData.serverName,
+        content: serverData.serverContent
+    });
+}
+onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}){
+    this.serverElements.push({
+        type: 'blueprint',
+        name: blueprintData.serverName,
+        content: blueprintData.serverContent
+    });
+}
+on child component
+@Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+@Output() bluePrintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+import {Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+onAddServer(){
+    this.serverCreated.emit({
+        serverName: this.newServerName,
+        serverContent: this.newServerContent
+    });
+}
+onAddBlueprint(){
+    this.bluePrintCreated.emit({
+        serverName: this.newServerName,
+        serverContent: this.newServerContent
+    });
+}
