@@ -176,3 +176,33 @@ ngDoCheck, ngAfterContentChecked, ngAfterViewChecked called after page render al
 local element value can be acces after viewinit hook not before that
 
 @ContentChild similiar to @ViewChild but here the local reference will be from ng-content
+
+more than 1 structral directive(*ngFor / *ngIf) on the same element
+
+creating a directive
+import {Directive} from "@angular/core";
+@Directive({
+    selector: '[appSelect]'
+})
+export class baseAppDirective implements OnInit{
+    constructor(private elementRef: ElementRef){}
+    ngOnInit(){
+        this.elementRef.nativeElement.style.background = 'green';
+    }
+};
+<p appSelect></p>
+directives need to be add to declarations in module
+
+ng g d directivecreate
+
+import {Directive, OnInit, ElementRef, Renderer2} from "@angular/core";
+@Directive({
+    selector: '[appSelect]'
+})
+export class baseAppDirective implements OnInit{
+    constructor(private elementRef: ElementRef, private renderer: Renderer2){}
+    ngOnInit(){
+        this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue');
+    }
+};
+//renderer should be used as angular not only runs on browser but also on service workers(push notification, background sync)
