@@ -100,7 +100,7 @@ ng g c recipes/recipe-list/recipe-item --spec false
 import {Component, OnInit, Input } from '@angular/core';
 
 custom events
-<app-cockpit (serverCreated)="onServerAdded($event)" (bluePrintCreated)="onBlueprintAdded($event)"></app-cockpit>
+<app-cockpit (serverCreated)="onServerAdded($event)" (bpCreated)="onBlueprintAdded($event)"></app-cockpit>
 on parent component
 onServerAdded(serverData: {serverName: string, serverContent: string}){
     this.serverElements.push({
@@ -118,7 +118,7 @@ onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}){
 }
 on child component
 @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-@Output() bluePrintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+@Output('bpCreated') bluePrintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
 import {Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 onAddServer(){
@@ -133,3 +133,10 @@ onAddBlueprint(){
         serverContent: this.newServerContent
     });
 }
+
+
+Angular provide view encapsulation that means css for parents will not work on children as it's supposed to work like that again in each component it add attribute by itself  so that the style should not implement and if added the same style on children it will be with that attribute name(p[xyz]{color: pink}) in the DOM
+
+@Component({
+    encapsulation: ViewEncapsulation.Emulated //default //None //to make the style global //Native //gives same result as Emulated but it works on browsers that supports shadow DOM technology
+})
