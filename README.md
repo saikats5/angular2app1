@@ -195,14 +195,91 @@ directives need to be add to declarations in module
 
 ng g d directivecreate
 
-import {Directive, OnInit, ElementRef, Renderer2} from "@angular/core";
+import {Directive, OnInit, ElementRef, Renderer2, HostListener} from "@angular/core";
 @Directive({
     selector: '[appSelect]'
 })
 export class baseAppDirective implements OnInit{
     constructor(private elementRef: ElementRef, private renderer: Renderer2){}
     ngOnInit(){
-        this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue');
+       //this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue', false, false);
     }
+    @HostListener('mouseenter') mouseenter(eventData: Event){
+        this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue', false, false);
+    } 
+    @HostListener('mouseleave') mouseleave(eventData: Event){
+        this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent', false, false);
+    } 
 };
 //renderer should be used as angular not only runs on browser but also on service workers(push notification, background sync)
+
+@HostListener --- events will work on elements
+
+import {Directive, OnInit, ElementRef, Renderer2, HostListener, HostBinding} from "@angular/core";
+@Directive({
+    selector: '[appSelect]'
+})
+export class baseAppDirective implements OnInit{
+    @HostBinding('style.backgroundColor') backgroundColorCls: string = 'transparent'; 
+    constructor(private elementRef: ElementRef, private renderer: Renderer2){}
+    ngOnInit(){
+       //this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue', false, false);
+    }
+    @HostListener('mouseenter') mouseenter(eventData: Event){
+        this.backgroundColorCls = 'blue';
+    } 
+    @HostListener('mouseleave') mouseleave(eventData: Event){
+        this.backgroundColorCls = 'transparent';
+    } 
+};
+
+import {Directive, OnInit, ElementRef, Renderer2, HostListener, HostBinding} from "@angular/core";
+@Directive({
+    selector: '[appSelect]'
+})
+export class baseAppDirective implements OnInit{
+    @Input() defaultColor: string = 'transparent';
+    @Input() highlightColor: string = 'blue';
+    @HostBinding('style.backgroundColor') backgroundColorCls: string = this.defaultColor; 
+    constructor(private elementRef: ElementRef, private renderer: Renderer2){}
+    ngOnInit(){
+        this.backgroundColorCls = this.defaultColor;
+       //this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue', false, false);
+    }
+    @HostListener('mouseenter') mouseenter(eventData: Event){
+        this.backgroundColorCls = this.highlightColor;
+    } 
+    @HostListener('mouseleave') mouseleave(eventData: Event){
+        this.backgroundColorCls = this.defaultColor;
+    } 
+};
+
+<p appSelect [defaultColor]="'yellow'" [highlightColor]="'orange'">Para</p>
+//defaultColor="yellow"
+//[defaultColorCls]="'yellow'" //@Input('defaultColorCls') defaultColor: string = 'transparent';
+
+<ng-template [ngIf]='!onlyEven'></ng-template>
+
+custom structural directive
+import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
+@Directive({
+    selectors: 'appUnless'
+})
+export class UnlessDirective{
+    @Input() set appUnless(condition: boolean){
+        if(!condition){
+            this.vcRef.createEmbeddedView(this.templateRef);
+        }else{
+            this.vcRef.clear();
+        }
+    }
+    constructor(private templateRef: TemplateRef<any>, private vcRef: ViewContainerRef){}
+}
+<div *appUnless="onlyOdd"></div>
+
+<div [ngSwitch]="value">
+    <p *ngSwitchCase="5">Value is 5</p>
+    <p *ngSwitchCase="10">Value is 10</p>
+    <p *ngSwitchCase="100">Value is 100</p>
+    <p ngSwitchDefault>Value is Default</p>
+</div>
