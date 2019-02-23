@@ -288,3 +288,20 @@ Services in angular can be normal class that performs some kind of action and ha
 @Injectable decorator is not compulsary but it is good practice when we want to add another service in it
 
 Import {Injectable} from '@angular/core';
+
+Services needs to be added on providers
+
+
+Router
+import {Routes, RouterModule} from "@angular/router";
+const appRoutes: Routes = [
+    {path: '', component: HomeComponent},
+    {path: 'users', component: UsersComponent},
+    {path: 'servers', component: ServersComponent}
+]
+
+path should be without "/"
+RouterModule has to be added on imports
+imports: [RouterModule.forRoot(appRoutes)] //registering routes to the app
+
+<router-outlet></router-outlet> for the roting section in template
