@@ -304,4 +304,8 @@ path should be without "/"
 RouterModule has to be added on imports
 imports: [RouterModule.forRoot(appRoutes)] //registering routes to the app
 
-<router-outlet></router-outlet> for the roting section in template
+<router-outlet></router-outlet> for the routing section in template
+
+<a href="/">Home</a>
+<a href="/users">Home</a>
+<a href="/servers">Home</a>
