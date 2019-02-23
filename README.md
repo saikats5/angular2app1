@@ -283,3 +283,8 @@ export class UnlessDirective{
     <p *ngSwitchCase="100">Value is 100</p>
     <p ngSwitchDefault>Value is Default</p>
 </div>
+
+Services in angular can be normal class that performs some kind of action and has to be referenced in constructor of another component who want to use it
+@Injectable decorator is not compulsary but it is good practice when we want to add another service in it
+
+Import {Injectable} from '@angular/core';
