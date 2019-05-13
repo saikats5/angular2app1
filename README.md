@@ -307,5 +307,21 @@ imports: [RouterModule.forRoot(appRoutes)] //registering routes to the app
 <router-outlet></router-outlet> for the routing section in template
 
 <a href="/">Home</a>
-<a href="/users">Home</a>
-<a href="/servers">Home</a>
+<a href="/users">Users</a>
+<a href="/servers">Servers</a>
+
+But this reloads whole page, the page refreshes, it may lose the state
+
+<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+<a routerLink="/users" routerLinkActive="active">Users</a>
+<a [routerLink]="['/servers', 'something']" routerLinkActive="active">Servers</a>
+
+it prevents the default click to send request by href and instead analyse the route
+without '/'/'./' is relative path and with '/' is absolute path
+
+<a routerLink="../users">Users</a> //removes /users goto 1 level up i.e., / then again come to /users //../../users
+
+routerLinkActiveOptions will check the exact path for '/' only
+
+Typescript
+let a; // let a: any;
