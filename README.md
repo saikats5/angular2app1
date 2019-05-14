@@ -325,3 +325,19 @@ routerLinkActiveOptions will check the exact path for '/' only
 
 Typescript
 let a; // let a: any;
+
+enum is acontainer to store values
+enum Color { Red, Green, Purple } // by default values are enum Color { Red=0, Green=1, Purple=2 } // it's beter to provide the default to avoid confusing with value in future if new value is inserted
+let backgroundColor = Color.Red
+
+Reactive Programming is programming with asynchronous data streams 
+
+This means when you are writing code that deals with asynchronous operations and streams of data, you are doing reactive programming.
+A stream refers to values of data overtime.
+RxJS stands for Reactive Extensions for JavaScript
+import { Observable, Subscriber } from 'rxjs';
+import { tap, map, filter } from 'rxjs/operators';
+RxJS uses the concept of Observables to handle and work with asynchronous and event-based code.
+Observables which use the observer software pattern.
+
+An Observable is an entity that emits (or publishes) multiple data values (stream of data) over time and asynchronously.
